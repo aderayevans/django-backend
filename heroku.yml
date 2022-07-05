@@ -3,7 +3,7 @@ build:
     web: Dockerfile
 run:
   web: python /code/manage.py runserver 0.0.0.0:$PORT
-release:
-  image: web
-  command:
-    - python /code/manage.py migrate
+# release:
+#   image: web
+#   command:
+#     - python /code/manage.py migrate
