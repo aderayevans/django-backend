@@ -2,9 +2,7 @@ build:
   docker:
     web: Dockerfile
 run:
-  command:
-      - python manage.py runserver 0.0.0.0:8080
+  web: python /code/manage.py runserver 0.0.0.0:$PORT
 
 release: 
-  command:
-    - python manage.py migrate
+  web: python /code/manage.py migrate
