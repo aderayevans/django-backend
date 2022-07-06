@@ -76,13 +76,21 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django-app-db',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'db',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'shark-db',
+        'USER': 'aderayevans',
+        'PASSWORD': 'postgreSQL2022',
+        'HOST': 'ade-postgre-db.postgres.database.azure.com', #db',
+        'PORT': '5432',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'django-app-db',
+    #     'USER': 'root',
+    #     'PASSWORD': '',
+    #     'HOST': 'db',
+    #     'PORT': '3306',
+    # }
 }
 
 
