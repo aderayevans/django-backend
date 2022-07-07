@@ -6,51 +6,9 @@ services:
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - 8000:8000
     image: aderayevans/shark-api:latest
     container_name: django_container
     command: python manage.py runserver 0.0.0.0:8000
-    depends_on:
-      - db
-  db:
-    # image: mysql
-    # environment:
-    #   MYSQL_DATABASE: 'django-app-db'
-    #   MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-    # volumes:
-    #   - ./data/mysql/db:/var/lib/mysql
-    # container_name: mysql_db
-
-    # image: postgres
-    # volumes:
-    #   - ./data/db:/var/lib/postgresql/data
-    # environment:
-    #   - POSTGRES_DB=postgres
-    #   - POSTGRES_USER=postgres
-    #   - POSTGRES_PASSWORD=postgres
-    # container_name: postgres_db
-
-    image: postgres
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=shark-db
-      - POSTGRES_USER=aderayevans
-      - POSTGRES_PASSWORD=postgreSQL2022
-    container_name: postgres_db
-
-
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   restart: always
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: admin@tma.com
-  #     PGADMIN_DEFAULT_PASSWORD: secret
-  #     PGADMIN_LISTEN_PORT: 5454
-  #   ports:
-  #     - "5454:80"
-  #   volumes:
-  #     - ./data/pgadmin:/var/lib/pgadmin
-  #   links:
-  #     - "db:pgsql-server"
-  #   container_name: pgadmin4
+    env_file:
+      - ./.env.dev

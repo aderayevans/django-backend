@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x#qi$d68j=w13d#y)2h2+3eh-)%b1*x=rdsp&1_#rakg$-1o8d'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECRET_KEY = '1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = int(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = []
+# 'DJANGO_ALLOWED_HOSTS' should be a single string of hosts with a space between each.
+# For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+
+# ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -77,12 +85,20 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'shark-db',
-        'USER': 'aderayevans',
-        'PASSWORD': 'postgreSQL2022',
-        'HOST': 'ade-postgre-db.postgres.database.azure.com', #db',
-        'PORT': '5432',
-    }
+        "NAME": os.environ.get("POSTGRESQL_DATABASE", BASE_DIR / "db.sqlite3"),
+        "USER": os.environ.get("POSTGRESQL_USER", "postgres"),
+        "PASSWORD": os.environ.get("POSTGRESQL_PASSWORD", "postgres"),
+        "HOST": os.environ.get("POSTGRESQL_HOST", "localhost"),
+        "PORT": os.environ.get("POSTGRESQL_PORT", ""),
+    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'shark-db',
+    #     'USER': 'aderayevans',
+    #     'PASSWORD': 'postgreSQL2022',
+    #     'HOST': 'ade-postgre-db.postgres.database.azure.com', #db',
+    #     'PORT': '5432',
+    # }
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
     #     'NAME': 'django-app-db',
