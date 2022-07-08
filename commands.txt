@@ -7,14 +7,16 @@ docker exec -it django_container /bin/bash
 docker images
 "see the image ID session"
 docker tag 6833..... aderayevans/shark-api
-docker push aderayevans/shark-api
+docker push aderayevans/shark-api:latest
 
 ========== others
 docker ps -a
 docker run -p 8000:80 
 docker-compose exec web python manage.py migrate --noinput
 docker-compose down --remove-orphans
-docker-compose up --remove-orphans
-docker-compose -f docker-compose.prod.yml up -d --build
-docker-compose -f docker-compose.prod.yml up
-docker-compose -f docker-compose.yml up --build
+docker-compose up --build --remove-orphans
+docker-compose -f docker-compose.local.yml up -d --build
+docker-compose -f docker-compose.local.yml up --build --remove-orphans
+docker-compose -f docker-compose.yml up --build --remove-orphans
+docker network ls
+docker network inspect ...
