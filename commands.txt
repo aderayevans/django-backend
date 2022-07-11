@@ -20,3 +20,7 @@ docker-compose -f docker-compose.local.yml up --build --remove-orphans
 docker-compose -f docker-compose.yml up --build --remove-orphans
 docker network ls
 docker network inspect ...
+
+============ running on 
+127.0.0.1:1337
+192.168.186.168:1337
