@@ -6,14 +6,14 @@ from .models import mShark
 from django.http import JsonResponse
 
 def index(request):
-    responseData = {
-        'id': 4,
-        'name': 'Test Response',
-        'roles' : ['Admin','User']
-    }
+    # responseData = {
+    #     'id': 4,
+    #     'name': 'Test Response',
+    #     'roles' : ['Admin','User']
+    # }
 
-    return JsonResponse(responseData)
-    # return HttpResponse("return this string")
+    # return JsonResponse(responseData)
+    return HttpResponse("Shark! 🦈")
 
 # Create your views here.
 # class IndexView(generic.ListView):
